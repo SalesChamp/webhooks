@@ -1,7 +1,7 @@
 {
-    "name": "saleschamp/utils",
+    "name": "saleschamp/webhooks",
     "type": "library",
-    "description": "Provides utilities required for signing and authenticating calls to public URLs",
+    "description": "Provides utilities required for signing and authenticating calls to public URLs.",
     "authors": [
         {
             "name": "Martin Kačmar",
