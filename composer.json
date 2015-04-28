@@ -1,0 +1,22 @@
+{
+    "name": "saleschamp/utils",
+    "type": "library",
+    "description": "Provides utilities required for signing and authenticating calls to public URLs",
+    "authors": [
+        {
+            "name": "Martin Kačmar",
+            "email": "martin@kacmar.sk"
+        }
+    ],
+    "require": {
+        "php": ">= 5.4.0"
+    },
+    "require-dev": {
+        "nette/tester": "~1.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "SalesChamp\\Webhooks\\": "src/SalesChamp/Webhooks"
+        }
+    }
+}
