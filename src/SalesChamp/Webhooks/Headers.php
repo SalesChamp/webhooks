@@ -11,4 +11,6 @@ abstract class Headers
 	const SIGNATURE = 'X-SalesChamp-Signature';
 
 	const IDENTIFIER = 'X-SalesChamp-Id';
+
+	const CAMPAIGN = 'X-Campaign-Id';
 }
