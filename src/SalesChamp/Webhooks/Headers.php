@@ -12,5 +12,5 @@ abstract class Headers
 
 	const IDENTIFIER = 'X-SalesChamp-Id';
 
-	const CAMPAIGN = 'X-Campaign-Id';
+	const CAMPAIGN = 'X-SalesChamp-Campaign-Id';
 }
