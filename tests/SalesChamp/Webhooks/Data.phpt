@@ -7,7 +7,6 @@
 namespace Tests\SalesChamp\Webhooks;
 
 
-use InvalidArgumentException;
 use SalesChamp;
 use Tester;
 use Tester\Assert;
@@ -19,22 +18,6 @@ require_once __DIR__ . '/../../bootstrap.php';
 
 class DataTest extends Tester\TestCase
 {
-
-	/**
-	 * @throws InvalidArgumentException
-	 */
-	public function testInvalidUserData()
-	{
-		$crate = new SalesChamp\Webhooks\Data($id = '57722efcf3bc7b37d0083562', $interactionId = '577235f7f3bc7b38da083563', $suspectId = '57723618f3bc7b38de083564', $campaignId = 1234, $signature = 'w8gbd3avayfezhubm53me15u42p9xvnc4dhd0nioiwromakfy4zivzhghbegn8wl', $event = 'registration', $user = [], $suspectData = [
-			'city' => 'Amsterdam',
-			'street' => 'Main street',
-			'number' => 22,
-			'numberAddition' => '',
-			'postalcode' => '1234AV',
-		]);
-	}
-
-
 
 	public function testGetters()
 	{

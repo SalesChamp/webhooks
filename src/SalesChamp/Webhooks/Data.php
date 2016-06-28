@@ -3,9 +3,6 @@
 namespace SalesChamp\Webhooks;
 
 
-use InvalidArgumentException;
-
-
 class Data
 {
 
