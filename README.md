@@ -16,7 +16,7 @@ This package provides utilities required for signing and authenticating calls to
 
 ## Tests
 
-Can be run via `./vendor/bin/tester tests`.
+Can be run via `./runTests.sh`.
 
 ## Versioning
 
