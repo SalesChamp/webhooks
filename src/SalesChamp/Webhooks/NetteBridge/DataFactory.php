@@ -34,13 +34,14 @@ class DataFactory
 	{
 		$data = Utils\Json::decode($this->request->getRawBody(), Utils\Json::FORCE_ARRAY);
 
-		Utils\Validators::assertField($data, 'id', 'string');
-		Utils\Validators::assertField($data, 'suspectId', 'string');
-		Utils\Validators::assertField($data, 'user', 'array');
-		Utils\Validators::assertField($data['user'], 'id', 'int');
-		Utils\Validators::assertField($data['user'], 'salescode', 'string');
-		Utils\Validators::assertField($data['user'], 'name', 'string');
-		Utils\Validators::assertField($data, 'data', 'array');
+		Utils\Validators::assert($data, 'array', 'request body');
+		Utils\Validators::assertField($data, 'id', 'string', 'item % in request body');
+		Utils\Validators::assertField($data, 'suspectId', 'string', 'item % in request body');
+		Utils\Validators::assertField($data, 'user', 'array', 'item % in request body');
+		Utils\Validators::assertField($data['user'], 'id', 'int', 'item % in user hash within request body');
+		Utils\Validators::assertField($data['user'], 'salescode', 'string', 'item % in user hash within request body');
+		Utils\Validators::assertField($data['user'], 'name', 'string', 'item % in user hash within request body');
+		Utils\Validators::assertField($data, 'data', 'array', 'item % in request body');
 
 		return new Webhooks\Data(
 			$id = $this->request->getHeader(Webhooks\Headers::IDENTIFIER),
