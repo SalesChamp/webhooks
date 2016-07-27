@@ -37,6 +37,7 @@ class DataFactory
 		Utils\Validators::assert($data, 'array', 'request body');
 		Utils\Validators::assertField($data, 'id', 'string', 'item % in request body');
 		Utils\Validators::assertField($data, 'suspectId', 'string', 'item % in request body');
+		Utils\Validators::assertField($data, 'externalId', 'string|null', 'item % in request body');
 		Utils\Validators::assertField($data, 'user', 'array', 'item % in request body');
 		Utils\Validators::assertField($data['user'], 'id', 'int', 'item % in user hash within request body');
 		Utils\Validators::assertField($data['user'], 'salescode', 'string', 'item % in user hash within request body');
@@ -47,6 +48,7 @@ class DataFactory
 			$id = $this->request->getHeader(Webhooks\Headers::IDENTIFIER),
 			$interactionId = $data['id'],
 			$suspectId = $data['suspectId'],
+			$externalId = $data['externalId'],
 			$campaignId = $this->request->getHeader(Webhooks\Headers::CAMPAIGN),
 			$signature = $this->request->getHeader(Webhooks\Headers::SIGNATURE),
 			$event = $this->request->getHeader(Webhooks\Headers::EVENT),

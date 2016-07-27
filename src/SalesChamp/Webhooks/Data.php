@@ -25,6 +25,12 @@ class Data
 
 
 	/**
+	 * @var string|null
+	 */
+	private $externalId;
+
+
+	/**
 	 * @var int
 	 */
 	private $campaignId;
@@ -59,17 +65,19 @@ class Data
 	 * @param string $id
 	 * @param string $interactionId
 	 * @param string $suspectId
+	 * @param string $externalId
 	 * @param int $campaignId
 	 * @param string $signature
 	 * @param string $event
 	 * @param array $user
 	 * @param array $suspectData
 	 */
-	public function __construct($id, $interactionId, $suspectId, $campaignId, $signature, $event, array $user, array $suspectData)
+	public function __construct($id, $interactionId, $suspectId, $externalId, $campaignId, $signature, $event, array $user, array $suspectData)
 	{
 		$this->id = (string) $id;
 		$this->interactionId = (string) $interactionId;
 		$this->suspectId = (string) $suspectId;
+		$this->externalId = is_null($externalId) ? $externalId : (string) $externalId;
 		$this->campaignId = (int) $campaignId;
 		$this->signature = (string) $signature;
 		$this->event = (string) $event;
@@ -106,6 +114,16 @@ class Data
 	public function getSuspectId()
 	{
 		return $this->suspectId;
+	}
+
+
+
+	/**
+	 * @return string|null
+	 */
+	public function getExternalId()
+	{
+		return $this->externalId;
 	}
 
 
