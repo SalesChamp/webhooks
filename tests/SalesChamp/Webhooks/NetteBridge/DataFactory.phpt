@@ -69,6 +69,25 @@ class DataFactoryTest extends Tester\TestCase
 					'user' => [],
 				]))
 			],
+			// Missing 'externalId'
+			[
+				self::createHttpRequest(json_encode([
+					'id' => '57722efcf3bc7b37d0083562',
+					'suspectId' => '57723618f3bc7b38de083564',
+					'user' => [
+						'id' => 12,
+						'name' => 'Frank',
+						'salescode' => '',
+					],
+					'data' => [
+						'city' => 'Amsterdam',
+						'street' => 'Main street',
+						'number' => 22,
+						'numberAddition' => '',
+						'postalcode' => '1234AV',
+					],
+				]))
+			],
 		];
 	}
 
@@ -103,6 +122,7 @@ class DataFactoryTest extends Tester\TestCase
 		$factory = new Webhooks\NetteBridge\DataFactory(self::createHttpRequest(json_encode([
 			'id' => '57722efcf3bc7b37d0083562',
 			'suspectId' => '57723618f3bc7b38de083564',
+			'externalId' => '00Q58000002fX7GEAU',
 			'user' => [
 				'id' => 12,
 				'name' => 'Frank',
@@ -124,6 +144,69 @@ class DataFactoryTest extends Tester\TestCase
 		$crate = $factory->create();
 
 		Assert::type('SalesChamp\Webhooks\Data', $crate);
+	}
+
+
+
+	public function testValidCrateExternalIdNull()
+	{
+		$factory = new Webhooks\NetteBridge\DataFactory(self::createHttpRequest(json_encode([
+			'id' => '57722efcf3bc7b37d0083562',
+			'suspectId' => '57723618f3bc7b38de083564',
+			'externalId' => null,
+			'user' => [
+				'id' => 12,
+				'name' => 'Frank',
+				'salescode' => '',
+			],
+			'data' => [
+				'city' => 'Amsterdam',
+				'street' => 'Main street',
+				'number' => 22,
+				'numberAddition' => '',
+				'postalcode' => '1234AV',
+			],
+		]), [
+			Webhooks\Headers::IDENTIFIER => '57722efcf3bc7b37d0083562',
+			Webhooks\Headers::CAMPAIGN => 123,
+			Webhooks\Headers::SIGNATURE => 'w8gbd3avayfezhubm53me15u42p9xvnc4dhd0nioiwromakfy4zivzhghbegn8wl',
+			Webhooks\Headers::EVENT => 'registration',
+		]));
+		$crate = $factory->create();
+
+		Assert::type('SalesChamp\Webhooks\Data', $crate);
+	}
+
+
+
+	/**
+	 * @throws Nette\Utils\AssertionException The item externalId in request body expects to be string or null, integer given.
+	 */
+	public function testInvalidCrateWrongExternalId()
+	{
+		$factory = new Webhooks\NetteBridge\DataFactory(self::createHttpRequest(json_encode([
+			'id' => '57722efcf3bc7b37d0083562',
+			'suspectId' => '57723618f3bc7b38de083564',
+			'externalId' => 42,
+			'user' => [
+				'id' => 12,
+				'name' => 'Frank',
+				'salescode' => '',
+			],
+			'data' => [
+				'city' => 'Amsterdam',
+				'street' => 'Main street',
+				'number' => 22,
+				'numberAddition' => '',
+				'postalcode' => '1234AV',
+			],
+		]), [
+			Webhooks\Headers::IDENTIFIER => '57722efcf3bc7b37d0083562',
+			Webhooks\Headers::CAMPAIGN => 123,
+			Webhooks\Headers::SIGNATURE => 'w8gbd3avayfezhubm53me15u42p9xvnc4dhd0nioiwromakfy4zivzhghbegn8wl',
+			Webhooks\Headers::EVENT => 'registration',
+		]));
+		$factory->create();
 	}
 }
 
