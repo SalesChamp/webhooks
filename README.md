@@ -1,4 +1,6 @@
-[![Codeship Status](https://www.codeship.io/projects/d57af290-cff9-0132-6afb-7637bc41f5cd/status)](https://www.codeship.io/projects/76883)
+[![Codeship Status](https://www.codeship.com/projects/d57af290-cff9-0132-6afb-7637bc41f5cd/status)](https://www.codeship.com/projects/76883)
+
+[![Build Status](https://travis-ci.org/SalesChamp/webhooks.svg?branch=master)](https://travis-ci.org/SalesChamp/webhooks)
 
 # Introduction
 
