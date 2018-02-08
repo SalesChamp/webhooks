@@ -41,6 +41,6 @@ class Authenticator
 	 */
 	public function verify($signature, $body)
 	{
-		return $signature === $this->sign($body);
+		return hash_equals($this->sign($body), $signature);
 	}
 }
